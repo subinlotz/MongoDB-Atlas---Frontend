@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Signup.css";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,7 @@ const Signup = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,9 +29,11 @@ const Signup = () => {
     
     if (data.status === "ok") {
       alert('Your data saved to our database')
+      navigate("/users")
     }
     if (data.status ==="error") {
       alert("user already exists")
+      navigate("/users")
     }
   };
 
